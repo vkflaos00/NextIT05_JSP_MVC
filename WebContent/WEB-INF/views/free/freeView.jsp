@@ -1,15 +1,9 @@
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.free.vo.FreeBoardVO"%>
-<%@page import="kr.or.nextit.free.service.FreeBoardServiceImpl"%>
-<%@page import="kr.or.nextit.free.service.IFreeBoardService"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,33 +103,7 @@ function fn_freeHide(){
 </head>
 <body>
 
-<jsp:useBean id="searchVO" class="kr.or.nextit.free.vo.FreeBoardSearchVO"></jsp:useBean>
-<jsp:setProperty property="*" name="searchVO"/>
 
-<%
-	System.out.println(searchVO.toString());
-	
-	String boNo = request.getParameter("boNo");
-	System.out.println("boNo : " + boNo);
-	IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
-	
-	try{
-		FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
-	
-		freeBoardService.increaseHit(boNo);
-		
-		System.out.println("freeBoard: "+ freeBoard.toString());
-		request.setAttribute("freeBoard", freeBoard);
-	}catch(BizNotEffectedException bne){
-		request.setAttribute("bne", bne);
-		bne.printStackTrace();
-	}catch(DaoException de){
-		request.setAttribute("de", de);
-		de.printStackTrace();
-	}
-
-
-%>
 
 <div id="wrap">
     <div class="header">
@@ -166,7 +134,7 @@ function fn_freeHide(){
 							해당글을 불러오지 못하였습니다. 전산실에 문의 부탁드립니다. 042-719-8850
 					</div>	
 					<div class="div_button">
-	                      <input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.jsp'" value="목록">
+	                      <input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.do'" value="목록">
 	                </div>
                 </c:if>
             	<c:if test="${bne eq null and de eq null }">
@@ -228,16 +196,16 @@ function fn_freeHide(){
                   </div>
                   <!-- 버튼 -->
                   <div class="div_button">
-                      <input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.jsp?searchType=${searchVO.searchType}&searchWord=${searchVO.searchWord}&searchCategory=${searchVO.searchCategory}&curPage=${searchVO.curPage}&rowSizePerPage=${searchVO.rowSizePerPage}'" value="목록">
+                      <input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.do?searchType=${searchVO.searchType}&searchWord=${searchVO.searchWord}&searchCategory=${searchVO.searchCategory}&curPage=${searchVO.curPage}&rowSizePerPage=${searchVO.rowSizePerPage}'" value="목록">
                       
                       <c:if test="${freeBoard.boWriter eq memberVO.memId  }">
-                      	<input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeEdit.jsp?boNo=${freeBoard.boNo }'" value="수정">
+                      	<input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeEdit.do?boNo=${freeBoard.boNo }'" value="수정">
                       	<input type="button" onclick="fn_freeDelete()" value="삭제">
                       </c:if>
 						<c:forEach items="${memberVO.userRoleList }" var="roleList">
 							<c:if test="${roleList.userRole eq 'AD' }">
 								<input type="button" onclick="fn_freeHide()" value="숨김">
-								<form name="freeHide" action="${pageContext.request.contextPath}/free/freeHide.jsp" method="post">
+								<form name="freeHide" action="${pageContext.request.contextPath}/free/freeHide.do" method="post">
 									<input type="hidden" name="memId" value="${memberVO.memId }" />	
 									<input type="hidden" name="boNo" value="${freeBoard.boNo }" />	
 								</form>
@@ -254,7 +222,7 @@ function fn_freeHide(){
 	<!-- 글삭제 모달 -->
 	<div id="modal_div1" >
 		<div id="modal_div2" >
-			<form name="deleteForm" action="${pageContext.request.contextPath}/free/freeDelete.jsp" method="post">
+			<form name="deleteForm" action="${pageContext.request.contextPath}/free/freeDelete.do" method="post">
 				<input type="hidden" id="boNo" name="boNo" value="${freeBoard.boNo }"/>
 				<input type="hidden" id="boWriter" name="boWriter" value="${memberVO.memId }"/>
 	            <div class="int-area">

@@ -1,12 +1,4 @@
-<%@page import="kr.or.nextit.code.vo.CodeVO"%>
-<%@page import="kr.or.nextit.code.service.CommCodeServiceImpl"%>
-<%@page import="kr.or.nextit.code.service.ICommCodeService"%>
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.free.vo.FreeBoardVO"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.or.nextit.free.service.FreeBoardServiceImpl"%>
-<%@page import="kr.or.nextit.free.service.IFreeBoardService"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -89,7 +81,7 @@ function fn_boardViewBoNo(boNo){
 	console.log("cp : ", cp);
 	console.log("rpp : ", rpp);
 	
-	location.href="${pageContext.request.contextPath}/free/freeView.jsp?boNo="
+	location.href="${pageContext.request.contextPath}/free/freeView.do?boNo="
 		+boNo
 		+"&searchType="+st
 		+"&searchWord="+sw
@@ -148,7 +140,7 @@ function fn_boardViewBoNo(boNo){
  			  		
  			  		<!-- 검색 -->
  			  		<div class="div_search">
-						<form name="search" action="${pageContext.request.contextPath}/free/freeList.jsp" method="post">
+						<form name="search" action="${pageContext.request.contextPath}/free/freeList.do" method="post">
 							<input type="hidden" name="curPage" value="${searchVO.curPage }">	
 							<input type="hidden" name="rowSizePerPage" value="${searchVO.rowSizePerPage }">
 								
@@ -299,7 +291,7 @@ function fn_boardViewBoNo(boNo){
 	                	</ul>
 	                <div class="div_board_write">
 	                    <input type="button" 
-	                    	onclick="location.href='${pageContext.request.contextPath}/free/freeForm.jsp'" value="글쓰기">
+	                    	onclick="location.href='${pageContext.request.contextPath}/free/freeForm.do'" value="글쓰기">
 	                </div>
 	            </div>
  			  </c:if>	

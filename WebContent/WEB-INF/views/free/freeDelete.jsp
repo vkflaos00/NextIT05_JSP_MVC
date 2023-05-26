@@ -1,9 +1,4 @@
-<%@page import="kr.or.nextit.exception.BizNotFoundException"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.exception.BizPasswordNotMatchedException"%>
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.free.service.IFreeBoardService"%>
-<%@page import="kr.or.nextit.free.service.FreeBoardServiceImpl"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -22,23 +17,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<jsp:useBean id="freeBoard" class="kr.or.nextit.free.vo.FreeBoardVO"></jsp:useBean>
-<jsp:setProperty property="*" name="freeBoard"/>
-<%
-	IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
-	try{
-		freeBoardService.deleteBoard(freeBoard);
-	}catch(BizNotEffectedException | BizNotFoundException bne){
-		request.setAttribute("bne", bne);
-		bne.printStackTrace();
-	}catch(BizPasswordNotMatchedException bpn){
-		request.setAttribute("bpn", bpn);
-		bpn.printStackTrace();
-	}catch(DaoException de){
-		request.setAttribute("de", de);
-		de.printStackTrace();
-	}
-%>
+
 
 <div class="container">
 	<c:if test="${bne eq null and bpn eq null and de eq null }">
@@ -46,7 +25,7 @@
 		<div class="alert alert-success">
 			<p>정상적으로 게시글이 등록되었습니다. 확인을 클릭하시면 목록페이지로 이동합니다.</p>
 			<div class="btn-area">
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.jsp'">확인</button>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.do'">확인</button>
 			</div>
 		</div>
 	</c:if>

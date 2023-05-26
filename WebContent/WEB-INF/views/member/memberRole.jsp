@@ -1,10 +1,4 @@
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.common.vo.RoleInfoVO"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.exception.BizException"%>
-<%@page import="kr.or.nextit.member.service.IMemberService"%>
-<%@page import="kr.or.nextit.member.service.MemberServiceImpl"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

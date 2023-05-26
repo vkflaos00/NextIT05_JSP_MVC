@@ -7,12 +7,6 @@
 <title>NextIT</title>
 </head>
 <body>
-<%-- 
-<%
-	session.removeAttribute("memberVO");
-	response.sendRedirect(request.getContextPath()+"/login/login.jsp");
 
-%>
-  --%>
 </body>
 </html>

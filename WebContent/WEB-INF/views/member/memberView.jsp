@@ -115,22 +115,6 @@ function fn_cancel(){
 </head>
 <body>
 
-<%-- <%
-	String memId = request.getParameter("memId");
-	IMemberService memberService = new MemberServiceImpl();
-				
-	try{
-		MemberVO member = memberService.getMember(memId);
-		member.setMemPass("");  
-		request.setAttribute("member", member);
-	}catch(BizNotEffectedException bne){
-		request.setAttribute("bne", bne);
-		bne.printStackTrace();
-	}catch(DaoException de){
-		request.setAttribute("de", de);
-		de.printStackTrace();
-	}
-%> --%>
 
 <div id="wrap">
 	 <div class="header">

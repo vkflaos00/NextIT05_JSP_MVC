@@ -1,16 +1,4 @@
-<%@page import="kr.or.nextit.exception.BizNotFoundException"%>
-<%@page import="kr.or.nextit.exception.BizException"%>
-<%@page import="kr.or.nextit.member.service.MemberServiceImpl"%>
-<%@page import="kr.or.nextit.member.service.IMemberService"%>
-<%@page import="kr.or.nextit.code.vo.CodeVO"%>
-<%@page import="kr.or.nextit.code.service.CommCodeServiceImpl"%>
-<%@page import="kr.or.nextit.code.service.ICommCodeService"%>
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.free.vo.FreeBoardVO"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.or.nextit.free.service.FreeBoardServiceImpl"%>
-<%@page import="kr.or.nextit.free.service.IFreeBoardService"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     

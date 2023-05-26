@@ -1,19 +1,9 @@
-<%@page import="java.util.List"%>
-<%@page import="kr.or.nextit.code.vo.CodeVO"%>
-<%@page import="kr.or.nextit.code.service.CommCodeServiceImpl"%>
-<%@page import="kr.or.nextit.code.service.ICommCodeService"%>
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.free.vo.FreeBoardVO"%>
-<%@page import="kr.or.nextit.free.service.FreeBoardServiceImpl"%>
-<%@page import="kr.or.nextit.free.service.IFreeBoardService"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,32 +41,7 @@ function fn_submitCheck(){
 </script>
 </head>
 <body>
-<%
-	//코드 계층화 로직 추가하기
-	ICommCodeService codeService = new CommCodeServiceImpl();
-	List<CodeVO> categoryList = codeService.getCodeListByParent("BC00");
-	
-	request.setAttribute("categoryList", categoryList);
-%>
 
-
-<%
-	String boNo = request.getParameter("boNo");
-	System.out.println("boNo : " + boNo);
-	IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
-	
-	try{
-		FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
-		System.out.println("freeBoard: "+ freeBoard.toString());
-		request.setAttribute("freeBoard", freeBoard);
-	}catch(BizNotEffectedException bne){
-		request.setAttribute("bne", bne);
-		bne.printStackTrace();
-	}catch(DaoException de){
-		request.setAttribute("de", de);
-		de.printStackTrace();
-	}
-%>
 <div id="wrap">
     <div class="header">
         <div class="top_nav">
@@ -108,14 +73,14 @@ function fn_submitCheck(){
 							해당글을 불러오지 못하였습니다. 전산실에 문의 부탁드립니다. 042-719-8850
 					</div>	
 					<div class="div_button">
-	                      <input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.jsp'" value="목록">
+	                      <input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.do'" value="목록">
 	                </div>
                 </c:if>
 	                  
             
             <!-- 해당 정보를 올바르게 불러온 경우 처리  -->
             	<c:if test="${bne eq null and de eq null }">
-            		<form name="freeModify" action="${pageContext.request.contextPath}/free/freeModify.jsp" method="post">
+            		<form name="freeModify" action="${pageContext.request.contextPath}/free/freeModify.do" method="post">
             	      <div id="div_table">
 	                      <table>
 	                          <colgroup>
@@ -200,7 +165,7 @@ function fn_submitCheck(){
 		                	<c:if test="${freeBoard.boWriter eq memberVO.memId  }">
 			                    <input type="button" onclick="fn_submitCheck()" value="저장">
 		                	</c:if>
-		                    <input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.jsp'" value="목록">
+		                    <input type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.do'" value="목록">
 		                </div>
                   	</form>
              	</c:if>

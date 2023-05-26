@@ -1,14 +1,4 @@
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.exception.BizException"%>
-<%@page import="kr.or.nextit.member.service.MemberServiceImpl"%>
-<%@page import="kr.or.nextit.member.service.IMemberService"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.exception.BizDuplicateKeyException"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@	taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
@@ -21,32 +11,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member.css">
 </head>
 <body>
-<%-- <%request.setCharacterEncoding("utf-8"); %> --%>
-
-<%-- 
-<jsp:useBean id="member" class="kr.or.nextit.member.vo.MemberVO"></jsp:useBean>
-<jsp:setProperty property="*" name="member"/>
-
-<%
-System.out.println("member.toString() :" + member.toString());
-
-IMemberService memberService = new MemberServiceImpl();
-try{
-	memberService.registerMember(member);
-}catch(BizDuplicateKeyException bde){
-	bde.printStackTrace();
-	request.setAttribute("bde", bde);
-}catch(BizNotEffectedException bne){
-	bne.printStackTrace();
-	request.setAttribute("bne", bne);
-}catch(DaoException de){
-	de.printStackTrace();
-	request.setAttribute("de", de);
-}
-
-%>
-  --%>
-
 
 <div class="container">
 	<c:if test="${bne eq null and bde eq null and de eq null }">

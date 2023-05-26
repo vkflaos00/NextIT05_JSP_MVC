@@ -1,16 +1,4 @@
-<%@page import="java.util.List"%>
-<%@page import="kr.or.nextit.code.vo.CodeVO"%>
-<%@page import="kr.or.nextit.code.service.CommCodeServiceImpl"%>
-<%@page import="kr.or.nextit.code.service.ICommCodeService"%>
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.member.service.MemberServiceImpl"%>
-<%@page import="kr.or.nextit.member.service.IMemberService"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.SQLException"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -103,7 +91,7 @@ function fn_cancel(){
              		</c:when>
              		<c:when test="${bne eq null and de eq null }">
              		
-		             	<form name="memberModifyForm" action="${pageContext.request.contextPath}/member/memberModify.jsp"  method="post" >
+		             	<form name="memberModifyForm" action="${pageContext.request.contextPath}/member/memberModify.do"  method="post" >
 							<input type="hidden" name="memId" value="${member.memId }">
 			              	<table >
 								<tbody>
@@ -189,7 +177,7 @@ function fn_cancel(){
 								</tbody>
 							</table>
 							<div class="div_button">
-			                     <input type="button" onclick="location.href='${pageContext.request.contextPath}/home/home.jsp'" value="HOME">
+			                     <input type="button" onclick="location.href='${pageContext.request.contextPath}/home/home.do'" value="HOME">
 			                     <input type="button" onclick="fn_memberModify()" value="저장">
 			                     <input type="button" onclick="fn_cancel()" value="취소">
 			                 </div>

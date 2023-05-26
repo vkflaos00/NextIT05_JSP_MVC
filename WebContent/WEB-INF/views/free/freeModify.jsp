@@ -1,17 +1,10 @@
-<%@page import="kr.or.nextit.exception.BizNotFoundException"%>
-<%@page import="kr.or.nextit.exception.BizPasswordNotMatchedException"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.free.service.IFreeBoardService"%>
-<%@page import="kr.or.nextit.free.service.FreeBoardServiceImpl"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,27 +15,9 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<jsp:useBean id="freeBoard" class="kr.or.nextit.free.vo.FreeBoardVO"></jsp:useBean>
-<jsp:setProperty property="*" name="freeBoard"/>
-<%
-	IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
-	try{
-		freeBoardService.modifyBoard(freeBoard);
-	}catch(BizNotFoundException bnf){
-		request.setAttribute("bnf", bnf);
-		bnf.printStackTrace();
-	}catch(BizPasswordNotMatchedException bpn){
-		request.setAttribute("bpn", bpn);
-		bpn.printStackTrace();
-	}catch(BizNotEffectedException bne){
-		request.setAttribute("bne", bne);
-		bne.printStackTrace();
-	}catch(DaoException de){
-		request.setAttribute("de", de);
-		de.printStackTrace();
-	}
 
-%>
+
+
 
 <div class="container">
 	<c:if test="${bnf eq null and bpn eq null and bne eq null and de eq null }">
@@ -50,8 +25,8 @@
 		<div class="alert alert-success">
 			<p>정상적으로 게시글이 수정되었습니다. 확인을 클릭하시면 목록페이지로 이동하며 , 해당 뷰 버튼을 클릭하시면 해당 게시글으로 이동합니다.</p>
 			<div class="btn-area">
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.jsp'">확인</button>
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeView.jsp?boNo=${freeBoard.boNo }'">해당 뷰</button> 
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeList.do'">확인</button>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/free/freeView.do?boNo=${freeBoard.boNo }'">해당 뷰</button> 
 			</div>
 		</div>
 	</c:if>

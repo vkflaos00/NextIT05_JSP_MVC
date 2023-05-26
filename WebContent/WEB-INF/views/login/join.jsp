@@ -1,7 +1,4 @@
-<%@page import="kr.or.nextit.code.vo.CodeVO"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.or.nextit.code.service.CommCodeServiceImpl"%>
-<%@page import="kr.or.nextit.code.service.ICommCodeService"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     

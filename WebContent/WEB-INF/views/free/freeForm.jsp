@@ -1,13 +1,7 @@
-<%@page import="kr.or.nextit.code.vo.CodeVO"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.or.nextit.code.service.CommCodeServiceImpl"%>
-<%@page import="kr.or.nextit.code.service.ICommCodeService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +14,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<%
-	ICommCodeService codeService = new CommCodeServiceImpl();
-	List<CodeVO> categoryList = codeService.getCodeListByParent("BC00");
-	request.setAttribute("categoryList", categoryList);
 
-%>
 <div id="wrap">
     <div class="header">
         <div class="top_nav">
@@ -51,7 +40,7 @@
                 <h1>자유게시판</h1>
             </div>
             <form id="freeForm" 
-            	action="${pageContext.request.contextPath }/free/freeRegister.jsp" 
+            	action="${pageContext.request.contextPath }/free/freeRegister.do" 
             	method="post">
                   <div id="div_table">
                       <table>
@@ -120,7 +109,7 @@
                   <!-- 버튼 -->
                   <div class="div_button">
                       <input type="button" 
-                      	onclick="${pageContext.request.contextPath}/free/freeList.jsp" value="목록">
+                      	onclick="${pageContext.request.contextPath}/free/freeList.do" value="목록">
                       <input type="submit" value="등록">
                   </div>
        		</form>

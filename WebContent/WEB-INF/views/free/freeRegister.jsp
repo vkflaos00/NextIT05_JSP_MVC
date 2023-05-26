@@ -1,13 +1,8 @@
-<%@page import="kr.or.nextit.exception.DaoException"%>
-<%@page import="kr.or.nextit.exception.BizNotEffectedException"%>
-<%@page import="kr.or.nextit.free.service.FreeBoardServiceImpl"%>
-<%@page import="kr.or.nextit.free.service.IFreeBoardService"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,22 +14,7 @@
 </head>
 <body>
 
-<jsp:useBean id="freeBoard" class="kr.or.nextit.free.vo.FreeBoardVO"></jsp:useBean>
-<jsp:setProperty property="*" name="freeBoard"/>
-<%
-System.out.println("freeBoard.toString(): "+ freeBoard.toString());
 
-IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
-try{
-	freeBoardService.registerBoard(freeBoard);
-}catch(BizNotEffectedException bne){
-	bne.printStackTrace();
-	request.setAttribute("bne", bne);
-}catch(DaoException de){
-	de.printStackTrace();
-	request.setAttribute("de", de);
-}
-%>
 <div class="container">
 	<c:if test="${bne eq null and de eq null }">
 		<h3>게시글 등록 성공</h3>
@@ -42,7 +22,7 @@ try{
 			<p>정상적으로 게시글이 등록되었습니다. 확인을 클릭하시면 목록페이지로 이동합니다.</p>
 			<div class="btn-area">
 				<button type="button" 
-					onclick="location.href='${pageContext.request.contextPath}/free/freeList.jsp'">확인</button>
+					onclick="location.href='${pageContext.request.contextPath}/free/freeList.do'">확인</button>
 			</div>
 		</div>
 	</c:if>
@@ -54,7 +34,7 @@ try{
 			<div class="btn-area">
 				<button type="button" onclick="history.back();">뒤로가기</button>
 				<button type="button" 
-					onclick="location.href='${pageContext.request.contextPath}/home/home.jsp'">홈</button>	
+					onclick="location.href='${pageContext.request.contextPath}/home/home.do'">홈</button>	
 			</div>
 		</div>
 	</c:if>

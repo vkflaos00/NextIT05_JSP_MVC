@@ -1,31 +1,6 @@
-<%@page import="kr.or.nextit.member.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%-- <%
-MemberVO member =  (MemberVO)session.getAttribute("memberVO");
-if(member == null){
-	request.setAttribute("loginState", "none");
-}
-
-
-%> --%>
-<!-- <script type="text/javascript">
-$(function(){
-	//alert("header.jsp");
-	let loginState = $("#loginState").val();
-	console.log("loginState", loginState);
-	if(loginState == "none"){
-		alert("로그인 하셔야 이용 가능합니다.");
-		location.href = "${pageContext.request.contextPath}/login/login.jsp";
-	}
-});
-</script> -->
-
-
-
-<%-- 
-<input type="hidden" id="loginState" value="${loginState }"/> --%>
 <div class="searchArea">
 	<form action="">
 		<input type="text" id="input_search" name="input_search"
