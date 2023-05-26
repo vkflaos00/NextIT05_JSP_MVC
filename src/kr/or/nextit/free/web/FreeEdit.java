@@ -45,6 +45,7 @@ public class FreeEdit implements NextITProcess{
 			FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
 			System.out.println("freeBoard: "+ freeBoard.toString());
 			request.setAttribute("freeBoard", freeBoard);
+			request.setAttribute("boNo", boNo);
 		}catch(BizNotEffectedException bne){
 			request.setAttribute("bne", bne);
 			bne.printStackTrace();

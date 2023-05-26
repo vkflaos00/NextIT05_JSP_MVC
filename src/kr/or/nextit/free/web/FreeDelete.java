@@ -3,6 +3,8 @@ package kr.or.nextit.free.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import kr.or.nextit.exception.BizNotEffectedException;
 import kr.or.nextit.exception.BizNotFoundException;
 import kr.or.nextit.exception.BizPasswordNotMatchedException;
@@ -27,7 +29,8 @@ public class FreeDelete implements NextITProcess {
 			return "redirect:/login/login.do?msg=none";
 		}
 		FreeBoardVO freeBoard = new FreeBoardVO();
-
+		BeanUtils.populate(freeBoard, request.getParameterMap());
+		
 		IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
 		try {
 			freeBoardService.deleteBoard(freeBoard);

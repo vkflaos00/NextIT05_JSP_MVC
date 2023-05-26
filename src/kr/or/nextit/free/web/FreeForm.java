@@ -30,7 +30,7 @@ public class FreeForm implements NextITProcess{
 		request.setAttribute("categoryList", categoryList);
 
 		
-		return "/WEB-INF/views/free/FreeForm.jsp";
+		return "/WEB-INF/views/free/freeForm.jsp";
 	}
 
 }

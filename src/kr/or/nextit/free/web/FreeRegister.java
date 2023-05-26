@@ -3,6 +3,8 @@ package kr.or.nextit.free.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import kr.or.nextit.exception.BizNotEffectedException;
 import kr.or.nextit.exception.DaoException;
 import kr.or.nextit.free.service.FreeBoardServiceImpl;
@@ -25,6 +27,7 @@ public class FreeRegister implements NextITProcess {
 			return "redirect:/login/login.do?msg=none";
 		}
 		FreeBoardVO freeBoard = new FreeBoardVO();
+		BeanUtils.populate(freeBoard, request.getParameterMap());
 
 		System.out.println("freeBoard.toString(): " + freeBoard.toString());
 

@@ -3,6 +3,8 @@ package kr.or.nextit.free.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import kr.or.nextit.exception.BizNotEffectedException;
 import kr.or.nextit.exception.DaoException;
 import kr.or.nextit.free.service.FreeBoardServiceImpl;
@@ -25,18 +27,21 @@ public class FreeView implements NextITProcess {
 		if (memberVO == null) {
 			return "redirect:/login/login.do?msg=none";
 		}
-		FreeBoardSearchVO searchVO = new FreeBoardSearchVO();
 
 		String boNo = request.getParameter("boNo");
 		IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
-
+		
+		FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
+		BeanUtils.populate(freeBoard, request.getParameterMap());
+		
 		try {
-			FreeBoardVO freeBoard = freeBoardService.getBoard(boNo);
 
 			freeBoardService.increaseHit(boNo);
 
 			System.out.println("freeBoard: " + freeBoard.toString());
 			request.setAttribute("freeBoard", freeBoard);
+			request.setAttribute("boNo", boNo);
+			
 		} catch (BizNotEffectedException bne) {
 			request.setAttribute("bne", bne);
 			bne.printStackTrace();

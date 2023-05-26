@@ -3,6 +3,8 @@ package kr.or.nextit.free.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import kr.or.nextit.exception.BizNotEffectedException;
 import kr.or.nextit.exception.BizNotFoundException;
 import kr.or.nextit.exception.BizPasswordNotMatchedException;
@@ -26,12 +28,16 @@ public class FreeModify implements NextITProcess {
 		if (memberVO == null) {
 			return "redirect:/login/login.do?msg=none";
 		}
-
+		
+		String boNo = (String) request.getAttribute("boNo");
 		FreeBoardVO freeBoard = new FreeBoardVO();
+		BeanUtils.populate(freeBoard, request.getParameterMap());
 
+		
 		IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
 		try {
 			freeBoardService.modifyBoard(freeBoard);
+			request.setAttribute("boNo", boNo);
 		} catch (BizNotFoundException bnf) {
 			request.setAttribute("bnf", bnf);
 			bnf.printStackTrace();
