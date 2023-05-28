@@ -29,7 +29,9 @@ public class FreeModify implements NextITProcess {
 			return "redirect:/login/login.do?msg=none";
 		}
 		
-		String boNo = (String) request.getAttribute("boNo");
+		
+		
+		String boNo = request.getParameter("boNo");		
 		FreeBoardVO freeBoard = new FreeBoardVO();
 		BeanUtils.populate(freeBoard, request.getParameterMap());
 
@@ -37,6 +39,7 @@ public class FreeModify implements NextITProcess {
 		IFreeBoardService freeBoardService = new FreeBoardServiceImpl();
 		try {
 			freeBoardService.modifyBoard(freeBoard);
+			request.setAttribute("freeBoard", freeBoard);
 			request.setAttribute("boNo", boNo);
 		} catch (BizNotFoundException bnf) {
 			request.setAttribute("bnf", bnf);
