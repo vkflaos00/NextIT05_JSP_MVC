@@ -10,6 +10,8 @@
     width: 100%;
     height: 100px;
     background-color: lightgreen;
+    
+    display: flex;
 }
 .top_nav{
     width: 1280px;
